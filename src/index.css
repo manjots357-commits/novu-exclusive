@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --cyan-glow: #00E5FF;
+  --magenta-glow: #FF2A85;
+  --champagne-gold: #F5D08A;
+}
+
+body {
+  background-color: #05040A;
+  background-image: 
+    radial-gradient(circle at 18% 12%, rgba(98, 28, 168, 0.26) 0%, transparent 45%),
+    radial-gradient(circle at 82% 28%, rgba(0, 229, 255, 0.15) 0%, transparent 42%),
+    radial-gradient(circle at 50% 65%, rgba(255, 42, 133, 0.13) 0%, transparent 50%),
+    radial-gradient(circle at 20% 88%, rgba(245, 208, 138, 0.11) 0%, transparent 45%),
+    linear-gradient(180deg, #05040A 0%, #0B0616 45%, #07040F 100%);
+  background-attachment: fixed;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Continuous Zero-Gravity Sine-Wave Bobbing at Different Speeds */
+@keyframes levitateA {
+  0%, 100% {
+    transform: translate3d(0, 0px, 0);
+  }
+  50% {
+    transform: translate3d(0, -11px, 0);
+  }
+}
+
+@keyframes levitateB {
+  0%, 100% {
+    transform: translate3d(0, -3px, 0);
+  }
+  50% {
+    transform: translate3d(0, 9px, 0);
+  }
+}
+
+@keyframes levitateC {
+  0%, 100% {
+    transform: translate3d(0, 2px, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+@keyframes levitateShadow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(0.84);
+    opacity: 0.22;
+  }
+}
+
+/* Opt-in to spatial levitation only when prefers-reduced-motion: no-preference */
+@media (prefers-reduced-motion: no-preference) {
+  .levitate-slow {
+    animation: levitateA 6.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  .levitate-medium {
+    animation: levitateB 5.3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  .levitate-fast {
+    animation: levitateC 4.7s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+
+  .levitate-shadow {
+    animation: levitateShadow 5.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  }
+}
+
+/* Explicit pause state when user pauses motion via control or hovers card */
+.motion-paused .levitate-slow,
+.motion-paused .levitate-medium,
+.motion-paused .levitate-fast,
+.motion-paused .levitate-shadow,
+.pause-float-on-hover:hover {
+  animation-play-state: paused !important;
+}
+
+/* Glassmorphic Luxury Card Styling with Neon & Champagne Borders */
+.glass-pod-cyan {
+  background: linear-gradient(135deg, rgba(19, 13, 36, 0.75) 0%, rgba(9, 6, 19, 0.86) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 229, 255, 0.38);
+  box-shadow: 
+    0 26px 52px -12px rgba(0, 0, 0, 0.88),
+    0 0 28px -6px rgba(0, 229, 255, 0.24),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-pod-magenta {
+  background: linear-gradient(135deg, rgba(24, 11, 34, 0.75) 0%, rgba(10, 6, 20, 0.86) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 42, 133, 0.4);
+  box-shadow: 
+    0 26px 52px -12px rgba(0, 0, 0, 0.88),
+    0 0 28px -6px rgba(255, 42, 133, 0.24),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-pod-gold {
+  background: linear-gradient(135deg, rgba(25, 19, 32, 0.76) 0%, rgba(11, 8, 20, 0.88) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 208, 138, 0.45);
+  box-shadow: 
+    0 26px 52px -12px rgba(0, 0, 0, 0.88),
+    0 0 30px -6px rgba(245, 208, 138, 0.25),
+    inset 0 1px 1px 0 rgba(255, 244, 214, 0.24);
+}
+
+.glass-pod-tri {
+  background: linear-gradient(145deg, rgba(18, 12, 34, 0.8) 0%, rgba(8, 5, 18, 0.9) 100%);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(0, 229, 255, 0.34);
+  box-shadow: 
+    0 28px 60px -15px rgba(0, 0, 0, 0.92),
+    0 0 25px -5px rgba(0, 229, 255, 0.2),
+    0 0 40px -12px rgba(255, 42, 133, 0.2),
+    inset 0 1px 1px 0 rgba(245, 208, 138, 0.25);
+}
+
+/* Gallery 3D Z-Space Elevation */
+.gallery-frame-3d {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease;
+  }
+}
+
+.gallery-frame-3d:hover {
+  z-index: 30;
+  @media (prefers-reduced-motion: no-preference) {
+    transform: translate3d(0, -14px, 42px) scale(1.035);
+  }
+}
+
+/* Form controls per Modern Web Guidance */
+.luxury-input {
+  font: inherit;
+  font-size: max(1rem, 1em);
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+@media (pointer: coarse) {
+  .luxury-input {
+    min-height: 52px;
+  }
+}
+
+.luxury-input:focus-visible {
+  outline: 2px solid #00E5FF;
+  outline-offset: 2px;
+}
+
+.luxury-input:user-invalid {
+  border-color: #FF2A85 !important;
+  box-shadow: 0 0 16px rgba(255, 42, 133, 0.35);
+}
